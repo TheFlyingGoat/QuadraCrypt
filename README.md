@@ -57,17 +57,17 @@ gcc -O2 -shared -o Kuznechik_Fast.dll Kuznechik_Fast.c
 | Platform | Expected filename |
 |---|---|
 | Windows | `Serp.dll` |
-| Linux | `Serpent_Fast.so` or `libSerpent_Fast.so` |
+| Linux | `Serp.so` or `libSerp.so` |
 
 ```bash
 # Linux
-gcc -O2 -shared -fPIC -o Serpent_Fast.so Serpent_Fast.c
+gcc -O2 -shared -fPIC -o Serp.so Serp.c
 
 # Windows (MSVC)
 cl /LD /O2 Serpent_Fast.c /Fe:Serp.dll
 
 # Windows (MinGW)
-gcc -O2 -shared -o Serp.dll Serpent_Fast.c
+gcc -O2 -shared -o Serp.dll Serp.c
 ```
 
 ### Additional data file
@@ -80,14 +80,10 @@ gcc -O2 -shared -o Serp.dll Serpent_Fast.c
 
 ```
 project/
-├── Main.py               # Main application
+├── Main_V3_1.py               # Main application
 ├── 512.json              # SCAR symbol map
 ├── Kuznechik_Fast.c      # Kuznyechik C source
-├── Kuznechik_Fast.so     # Compiled Kuznyechik (Linux)
-├── Kuznechik_Fast.dll    # Compiled Kuznyechik (Windows)
-├── Serpent_Fast.c        # Serpent C source
-├── Serpent_Fast.so       # Compiled Serpent (Linux)
-└── Serp.dll              # Compiled Serpent (Windows)
+├── Serp.c        # Serpent C source
 ```
 
 ---
@@ -95,7 +91,7 @@ project/
 ## Usage
 
 ```bash
-python Main.py
+python Main_V3_1.py
 ```
 
 ### Creating a container
@@ -265,7 +261,7 @@ The encrypted header contains the file table (names, offsets, sizes) and the tog
 
 **`Kuznyechik shared library not found`** — compile `Kuznechik_Fast.c` and place the output next to `Main_V3_1.py`. See the compile commands above.
 
-**`Serpent shared library not found`** — same as above for `Serpent_Fast.c`.
+**`Serpent shared library not found`** — same as above for `Serp.c`.
 
 **`Failed to decode container header. Wrong password...`** — either the password is incorrect, or the container was created with an older incompatible version of the app and needs to be re-created.
 
