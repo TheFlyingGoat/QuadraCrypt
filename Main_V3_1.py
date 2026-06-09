@@ -103,8 +103,8 @@ def _load_serpent_lib() -> ctypes.CDLL:
     here = pathlib.Path(__file__).parent
     candidates = [
         here / "Serp.dll",             # Windows
-        here / "Serpent_Fast.so",      # Linux
-        here / "libSerpent_Fast.so",   # Linux (lib-prefixed)
+        here / "Serp.so",      # Linux
+        here / "libSerp.so",   # Linux (lib-prefixed)
     ]
     for p in candidates:
         if p.exists():
